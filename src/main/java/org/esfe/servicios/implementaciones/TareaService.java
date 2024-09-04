@@ -63,6 +63,7 @@ public class TareaService implements ITareaService {
     @Override
     public TareaSalida crear(TareaGuardar tareaGuardar) {
         Tarea tarea = modelMapper.map(tareaGuardar, Tarea.class);
+        tarea.setId(null);
         tarea.setEstado(Tarea.Status.APROBADA);
         return modelMapper.map(tareaRepository.save(tarea), TareaSalida.class);
     }

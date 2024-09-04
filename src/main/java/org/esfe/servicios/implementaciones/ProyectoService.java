@@ -53,8 +53,10 @@ public class ProyectoService implements IProyectoService {
 
     @Override
     public ProyectoSalida crear(ProyectoGuardar proyectoGuardar) {
-        Proyecto proyecto = proyectoRepository.save(modelMapper.map(proyectoGuardar, Proyecto.class));
-        return modelMapper.map(proyecto, ProyectoSalida.class);
+        Proyecto proyecto = modelMapper.map(proyectoGuardar, Proyecto.class);
+        proyecto.setId(null);
+
+        return modelMapper.map(proyectoRepository.save(proyecto), ProyectoSalida.class);
     }
 
     @Override
